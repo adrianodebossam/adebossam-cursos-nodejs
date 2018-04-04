@@ -3,8 +3,10 @@ module.exports = function (app) {
 		
 		var connection = app.infra.connectionFactore();
 
-		var produtosBanco = app.infra.produtosBanco(connection);
-		
+		var produtosBanco = new app.infra.produtosBanco(connection);
+
+
+		console.log(produtosBanco.valor);		
 		// consulta 
 		produtosBanco.lista(function(err, results) {
 
