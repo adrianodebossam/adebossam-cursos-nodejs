@@ -17,6 +17,10 @@ module.exports = function (app) {
 		connection.end();
 	});
 
+	app.get('/produtos/form', function(req,res){
+		res.render('produtos/form')
+	});
+
 	app.get('produtos/remove', function(){
 		var connection = app.infra.connectionFactore;
 		var produtosBanco = app.infra.connectionFactore(connection);
