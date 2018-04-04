@@ -1,20 +1,22 @@
 <html>
-	<body>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="/css/style.css">
+	<body class="container">
 		<form action="/produtos/salva" method="post" >
 			<div>
-				<label for="titulo"> Título </label>
-				<input type="text" id="titulo" name="titulo" placeholder="Coloque o título." />
+				<label for="titulo" class="label-control text-primary"> Título </label>
+				<input type="text" id="titulo" name="titulo" placeholder="Coloque o título." class="form-control" />
 			</div>
 			<div>
-				<label for="preco"> Preço </label>
-				<input type="text" id="preco" name="preco" placeholder="Coloque o preco." />
+				<label for="preco" class="label-control text-primary"> Preço </label>
+				<input type="text" id="preco" name="preco" placeholder="Coloque o preco." class="form-control" />
 			</div>
 			<div>
-				<label for="descricao"> Descrição </label>
-				<textarea cols="20" rows="10" id="descricao" name="descricao" placeholder="Descreva o livro."> </textarea>
+				<label for="descricao" class="label-control text-primary"> Descrição </label>
+				<textarea cols="20" rows="10" id="descricao" name="descricao" placeholder="Descreva o livro." class="form-control" > </textarea>
 			</div>
-
-			<input type="submit" value="Gravar" />
+			<br>
+			<input type="submit" value="Gravar" class="btn btn-primary btn-block" />
 		</form>
 	</body>	
 </html>		
