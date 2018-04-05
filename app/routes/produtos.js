@@ -23,6 +23,7 @@ module.exports = function (app) {
 	});
 
 // fora da aula
+// usando vanillão
 	app.post('/produtos/delete', function (req, res){
 		var id = req.body.id;
 		var connection = app.infra.connectionFactore();
