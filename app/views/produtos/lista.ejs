@@ -1,13 +1,32 @@
 <html>
  <link rel="stylesheet"  href="/css/bootstrap.css">
  <link rel="stylesheet"  href="/css/style.css">
-	<body>
+ <script src="/js/jquery.js"></script>
+ <script>
+ 	// alert quando del = true
+ 	function getParameterByName(name, url) {
+ 	    if (!url) url = window.location.href;
+ 	    name = name.replace(/[\[\]]/g, "\\$&");
+ 	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+ 	        results = regex.exec(url);
+ 	    if (!results) return null;
+ 	    if (!results[2]) return '';
+ 	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+ 	}
+
+ 	if (getParameterByName('del') == "true") {
+ 		alert('Livro excluído');
+ 	}
+
+ </script>
+	<body class="container">
 		<table class="table">
 			<tr>
 				<th>id</th>
 				<th>Titulo</th>
 				<th>Descrição</th>
 				<th>Preço</th>
+				<th>Deletar</th>
 			</tr>
 
 			<%for(var i=0; i < lista.length; i++) {%>
@@ -16,6 +35,12 @@
 				<td><%=lista[i].titulo%></td>
 				<td><%=lista[i].descricao%></td>
 				<td><%=lista[i].preco%></td>
+				<td>
+					<form action="/produtos/delete" method="post">
+						<input type="hidden" value="<%=lista[i].id%>" name="id">	
+						<input type="submit" value="X">
+					</form>
+				</td>
 			</tr>
 			<%}%>
 			

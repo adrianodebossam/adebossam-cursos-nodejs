@@ -9,15 +9,12 @@ module.exports = function (app) {
 	};
 	app.get('/produtos', listaProdutos);
 
-	app.get('/produtos/form', function(req,res){
+	app.get('/produtos/form', function (req, res){
 		res.render('produtos/form');
 	});
 
-	app.post('/produtos/salva', function(req, res){
-
+	app.post('/produtos', function (req, res){
 		var produto = req.body;
-		
-
 		var connection = app.infra.connectionFactore();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 		produtosDAO.salva(produto, function(err, results){
@@ -25,14 +22,14 @@ module.exports = function (app) {
 		}); 
 	});
 
-
-	app.get('produtos/remove', function(){
-		var connection = app.infra.connectionFactore;
-		var produtosDAO = app.infra.connectionFactore(connection);
-		var produto =  produtosDAO.carrega(id,callback);
-		if (produto) {
-			produtosDAO.remove(produto,callback);
-		}
+// fora da aula
+	app.post('/produtos/delete', function (req, res){
+		var id = req.body.id;
+		var connection = app.infra.connectionFactore();
+		var produtosDAO = new app.infra.ProdutosDAO(connection);
+		produtosDAO.remove(id, function (err, results){
+			res.redirect('/produtos?del=true');
+		});
 	});
 
 } 
