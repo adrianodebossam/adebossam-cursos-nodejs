@@ -1,16 +1,19 @@
 module.exports = function (app) {
-	    var listaProdutos = function (req, res) {		
+     app.get('/produtos', function (req, res) {		
 		var connection = app.infra.connectionFactore();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 		produtosDAO.lista(function(err, results) {
 			res.render('produtos/lista', {lista:results});
 		});
 		connection.end();
-	};
-	app.get('/produtos', listaProdutos);
-
-	app.get('/produtos/form', function (req, res){
-		res.render('produtos/form');
+	});
+     app.get('/produtos/json', function (req, res) {		
+		var connection = app.infra.connectionFactore();
+		var produtosDAO = new app.infra.ProdutosDAO(connection);
+		produtosDAO.lista(function(err, results) {
+			res.json(results);
+		});
+		connection.end();
 	});
 
 	app.post('/produtos', function (req, res){
@@ -20,6 +23,10 @@ module.exports = function (app) {
 		produtosDAO.salva(produto, function(err, results){
 			res.redirect('/produtos');
 		}); 
+		connection.end();
+	});
+	app.get('/produtos/form', function (req, res){
+	res.render('produtos/form');	
 	});
 
 // fora da aula
