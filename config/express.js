@@ -9,8 +9,10 @@ module.exports = function () {
 	app.set('view engine', 'ejs');
 	app.set ('views', './app/views');
 
+	console.log(errs);
 	app.use(express.static('./app/public'));
 	app.use(bodyParser.urlencoded({extended:true}));
+	app.use(bodyParser.json());
 
 
 	load('routes', { cwd: 'app' })
