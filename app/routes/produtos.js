@@ -10,10 +10,28 @@ module.exports = function (app) {
 					json: function(){
 						res.json(results);
 					}
+		
 			});			
 		});
 			connection.end();
-});
+	});
+
+    app.get('/produtos/form', function (req, res){
+		res.render('produtos/form');	
+	});
+
+	app.post('/produtos', function (req, res){
+
+		var produto = req.body;
+
+		var connection = app.infra.connectionFactore();
+		var produtosDAO = new app.infra.ProdutosDAO(connection);
+		produtosDAO.salva(produto, function(err, results){
+			res.redirect('/produtos');
+		}); 
+		connection.end();
+	});
+
      app.get('/produtos/json', function (req, res) {		
 		var connection = app.infra.connectionFactore();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
@@ -22,19 +40,7 @@ module.exports = function (app) {
 		});
 		connection.end();
 	});
-
-	app.post('/produtos', function (req, res){
-		var produto = req.body;
-		var connection = app.infra.connectionFactore();
-		var produtosDAO = new app.infra.ProdutosDAO(connection);
-		produtosDAO.salva(produto, function(err, results){
-			res.redirect('/produtos');
-		}); 
-		connection.end();
-	});
-	app.get('/produtos/form', function (req, res){
-	res.render('produtos/form');	
-	});
+	
 
 // fora da aula
 // usando vanillão
