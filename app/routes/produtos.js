@@ -13,7 +13,7 @@ module.exports = function (app) {
 		
 			});			
 		});
-			connection.end();
+		connection.end();
 	});
 
     app.get('/produtos/form', function (req, res){
@@ -24,15 +24,24 @@ module.exports = function (app) {
 
 		var produto = req.body;
 
+		var validadorTitulo = req.assert('titulo','Titulo é obrigatório');
+		validadorTitulo.notEmpty();
+
+		var erros = req.validationErrors();
+		if (erros) {
+			res.render('produtos/form');
+			return;
+		}
+
 		var connection = app.infra.connectionFactore();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 		produtosDAO.salva(produto, function(err, results){
 			res.redirect('/produtos');
 		}); 
-		connection.end();
 	});
 
-     app.get('/produtos/json', function (req, res) {		
+
+     app.get('produtos/json', function (req, res) {		
 		var connection = app.infra.connectionFactore();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 		produtosDAO.lista(function(err, results) {
@@ -53,4 +62,4 @@ module.exports = function (app) {
 		});
 	});
 
-} 
+}
