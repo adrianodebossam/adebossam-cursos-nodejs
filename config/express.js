@@ -19,7 +19,5 @@ module.exports = function () {
 		.then('infra')
 		.into(app);
 
-		// Pausa aqui
-
 	return app;
 };
