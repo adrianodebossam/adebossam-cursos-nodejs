@@ -2,6 +2,14 @@
 <link rel="stylesheet" href="/css/bootstrap.css">
 <link rel="stylesheet" href="/css/style.css">
 	<body class="container">
+		<div class='erros'>
+			<%if(errosValidacao){%>
+			<ul>
+				<%for(var i=0;i<errosValidacao.length;i++){%>
+
+			<%}%>
+		<%}%>
+		</div>
 		<form action="/produtos" method="post" >
 			<div>
 				<label for="titulo" class="label-control text-primary"> Título </label>

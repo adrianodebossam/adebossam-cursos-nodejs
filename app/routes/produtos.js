@@ -24,8 +24,9 @@ module.exports = function (app) {
 
 		var produto = req.body;
 
-		var validadorTitulo = req.assert('titulo','Titulo é obrigatório');
-		validadorTitulo.notEmpty();
+		req.assert('titulo','Titulo é obrigatório').notEmpty();
+		req.assert('preco', 'Formato inválido').isFloat();
+		
 
 		var erros = req.validationErrors();
 		if (erros) {
