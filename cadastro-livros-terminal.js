@@ -20,7 +20,7 @@ var client = http.request(configuracoes,function(res){
 }); 
 
 var produto = {
-	titulo: 'teste titulo',
+	titulo: '',
 	descricao: 'teste descricso',
 	preco: 100
 };
