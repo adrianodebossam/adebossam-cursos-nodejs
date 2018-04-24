@@ -1,4 +1,4 @@
-var http = require('http');
+var request = require('supertest')();
 describe('ProdutosController',function(){
 	it('listagem json',function(done){
 		var configuracoes = {
