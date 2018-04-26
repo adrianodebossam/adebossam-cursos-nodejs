@@ -10,4 +10,15 @@ describe('ProdutosController',function(){
  			.expect(200,done);
  			done();			
 		});
+	it('#Cadastro de novo produto com dados inválidos', function(done){
+		request.post('/produtos')
+		.send({titulo: "", descricao: "novo livro"})
+		.expect(400,done)
+	});
+
+	it('#Cadastro de novo produto com dados válidos', function(done){
+		request.post('/produtos')
+		.send({titulo: "novo titulo", descricao: "novo livro", preco: 20.50})
+		.expect(302,done)
+	});
 	});

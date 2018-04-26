@@ -2,7 +2,7 @@ var http = require('http');
 
 var configuracoes = {
 	hostname: 'localhost',
-	port: 3030,
+	port: 3000,
 	method: 'post',
 	path: '/produtos.json',
 	headers: {
