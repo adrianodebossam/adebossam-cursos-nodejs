@@ -1,8 +1,11 @@
 module.exports = function (app) {
-     app.get('/produtos', function (req, res) {		
+     app.get('/produtos', function (req, res, next) {		
 		var connection = app.infra.connectionFactore();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 		produtosDAO.lista(function(err, results) {
+			if(erros){
+				return next(erros);
+			}
 			res.format({
 				html: function (){
 					 res.render('produtos/lista', {lista:results});
@@ -34,10 +37,10 @@ module.exports = function (app) {
 			res.format({
 				html: function (){
 					res.status(400).render('produtos/form',{errosValidacao : erros, produto:produto});
-					},
-					json: function(){
-						res.status(400).json(erros);
-					}
+				},
+				json: function(){
+					res.status(400).json(erros);
+				}
 		
 			});			
 			
