@@ -11,6 +11,7 @@ var configuracoes = {
 	}
 };
 
+//usar o hetp request está quebrando algo na minha máquina.
 
 var client = http.request(configuracoes,function(res){
 	console.log(res.statusCode);
